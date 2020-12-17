@@ -1,14 +1,12 @@
 <div class="container mt-3">
     <div class="row">
         <div class="col">
-            <p class="fw-bolder">Khoảng Cách: <span class="text-success fs-4"><?=$distance?>km
-                    (<?=$distance*1000?>m)
-                </span></p>
+            <p class="fw-bolder">Khoảng Cách: <span class="text-success fs-4"><?=$distance?>km</span></p>
         </div>
     </div>
     <div class="row">
         <div class="col">
-            <p class="fw-bolder">Trọng lượng: <span class="text-success fs-4"><?=$weight?></span></p>
+            <p class="fw-bolder">Trọng lượng: <span class="text-success fs-4"><?=$weight?>Tấn</span></p>
         </div>
     </div>
     <div class="row">

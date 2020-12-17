@@ -2,8 +2,8 @@
 require_once 'db.php';
     class CostTaxi {
 
-        private $typeDistance;
-        private $typeWeight;
+        private $idDistance;
+        private $idWeight;
         private $cost;
         private $conn;
         private $weight;
@@ -14,9 +14,9 @@ require_once 'db.php';
             $this->distance = $distance;
             $this->weight = $weight;
             $this->conn = $conn;
-            $this->getTypeDistanceFromDatabase();
-            $this->getTypeWeightFromDatabase();
-            $this->getFee();
+            $this->getIdDistanceFromDatabase();
+            $this->getIdWeightFromDatabase();
+            $this->getFeeFromDatbase();
         }
         public function setDistane($distance){
             $this->distance = $distance;
@@ -33,36 +33,48 @@ require_once 'db.php';
         public function getWeight(){
             return $this->weight;
         }
-        public function getFee(){
-            $result = $this->conn->query('SELECT fee FROM Cost WHERE id_cost = '.$this->typeDistance.' AND id_weight = '.$this->typeWeight);
+        public function getFeeFromDatbase(){
+            $result = $this->conn->query('SELECT fee FROM Cost WHERE id_cost = '.$this->idDistance.' AND id_weight = '.$this->idWeight);
             $result = $result->fetch(PDO::FETCH_ASSOC);
             return $this->fee = $result['fee'];
         }
 
         public function getCost()
         {
-            return $this->Cost = $this->fee*$this->distance;
+            return $this->Cost = $this->fee;
         }
 
-        public function getTypeDistanceFromDatabase()
+        public function getIdDistanceFromDatabase()
         {
             $result = $this->conn->query('SELECT id_cost FROM taxi_fee WHERE '.$this->distance.' >= taxi_fee.Min AND '.$this->distance.' < taxi_fee.Max');
-            $result = $this->typeDistance = $result->fetch(PDO::FETCH_ASSOC);
-            return $this->typeDistance = $result['id_cost'];
+            $result = $this->idDistance = $result->fetch(PDO::FETCH_ASSOC);
+            return $this->idDistance = $result['id_cost'];
         }
 
-        public function getTypeWeightFromDatabase()
+        public function getIdWeightFromDatabase()
         {
-            $result = $this->conn->query('SELECT weight1.id_weight FROM weight as weight1, weight as weight2 WHERE '.$this->weight.' >= weight1.weight AND '.$this->weight.'  < weight2.weight');
-            $result =  $result->fetch(PDO::FETCH_ASSOC);
-            return $this->typeWeight = end($result);
+            $result = $this->conn->query('SELECT * FROM `weight`');
+            $results = $result->fetchALl();
+            $maxValue= end($results);
+            $maxValue= $maxValue['weight'];
+            foreach ($results as $key => $result) {
+                if($this->getWeight() >=$results[$key]['weight'] && $this->getWeight() <$results[$key+1]['weight']){
+                    return $this->idWeight = $result['id_weight'];
+                    break;
+                }elseif($this->getWeight() <$results[0]['weight'])
+                {
+                    return $this->idWeight = $results[0]['id_weight'];
+                    break;
+                }elseif( $this->getWeight() >= $maxValue){
+                    $weight = end($results);
+                    return $this->idWeight = $weight['id_weight'];
+                    break;
+                }else {
+                    require_once 'modules/error.php';
+                }
+            }
         }
     }
-    $taxi_fee = new CostTaxi($conn, 2, 10);
-    $fee = $taxi_fee->getCost();
-    // $taxi_fee->getTypeWeightFromDatabase();
-    echo $taxi_fee->getFee();
-    echo $taxi_fee->getCost();
     
     
 ?>

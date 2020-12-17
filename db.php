@@ -1,10 +1,10 @@
 <?php
 
-$servername = 'sql12.freemysqlhosting.net';
-$username = 'sql12381775';
-$password = '1Aas3y5fHJ';
-$db_name = 'sql12381775';
-$port = 3306;
+$servername = 'localhost';
+$username = 'root';
+$password = '';
+$db_name = 'taxi_fee';
+$port = 3307;
 
 $dsn = "mysql:host=".$servername.";dbname=".$db_name.";port=".$port;
 $conn = new PDO($dsn, $username, $password);
