@@ -18,6 +18,7 @@
 </div>
 <div class="container mt-3">
     <div class="col-8 m-auto">
+        <a class="btn btn-success" type="submit" href="distance.php?t=add">Tạo Mới</a>
         <table class="table table-striped">
             <thead>
                 <tr>

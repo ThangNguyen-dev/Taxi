@@ -3,6 +3,7 @@ require_once 'db.php';
 require_once 'modules/delete.php';
 require_once 'modules/getData.php';
 require_once 'modules/update.php';
+require_once 'modules/add.php';
 
 /**
  * get v to get type delete or uppate
@@ -20,6 +21,8 @@ if (isset($_GET['v']) && isset($_GET['q'])) {
         $weights = getWeight($idWeight, $conn);
         require_once 'template/updateWeight.php';
     }
+} elseif (isset($_GET['t']) == 'add') {
+    require_once 'template/addWeight.php';
 } else {
 
     // Show all data weight from database
@@ -45,6 +48,15 @@ if (isset($_POST['updatedWeight'])) {
 
     updateWeight($weight, $conn, $idWeight);
 }
+if (isset($_POST['addWeight']) && isset($_POST['weight']) && isset($_POST['unit'])) {
+    $weight = $_POST['weight'];
+    $unit = $_POST['unit'];
+    if ($unit == 'kg') {
+        $weight = $weight / 1000;
+    }
+    insertWeight($weight, $conn);
+}
+
 
 ?>
 

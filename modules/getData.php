@@ -48,3 +48,20 @@ function getCost(int $idWeight, int $idDistance, PDO $conn)
         return $insert->fetch(PDO::FETCH_ASSOC);
     }
 }
+
+//get distance new not isset in cost table
+function getEmptyIdWeight(PDO $conn)
+{
+    $result = $conn->query('SELECT weight, id_weight FROM weight
+                            WHERE id_weight NOT IN (SELECT id_weight FROM cost)');
+    return $result->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
+//get weight new not isset in cost table
+function getEmptyIdDistance(PDO $conn)
+{
+    $result = $conn->query('SELECT Max, Min, id_distance FROM distance
+                            WHERE id_distance NOT IN (SELECT id_distance FROM cost)');
+    return $result->fetchAll(PDO::FETCH_ASSOC);
+}

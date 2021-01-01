@@ -28,6 +28,11 @@ if (isset($_GET['v']) && isset($_GET['qw']) && isset($_GET['qd'])) {
 
         require_once 'template/updateCost.php';
     }
+} elseif (isset($_GET['t']) == 'add') {
+    $weights = getEmptyIdWeight($conn);
+    $distances = getEmptyIdDistance($conn);
+
+    require_once 'template/addCost.php';
 } else {
 
     // Show all data weight from database
@@ -49,7 +54,12 @@ if (isset($_POST['updatedCost'])) {
     $fee = (int)$_POST['cost'];
     updateCost($idWeight, $idDistance, $conn, $fee);
 }
-
+if (isset($_POST['addCost'])) {
+    $idDistance = $_POST['distance'];
+    $idWeight = $_POST['weight'];
+    $fee = $_POST['cost'];
+    insertCost($idWeight, $idDistance, $conn, $fee);
+}
 ?>
 
 
