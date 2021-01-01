@@ -2,7 +2,7 @@
 require_once 'db.php';
 require_once 'modules/delete.php';
 require_once 'modules/getData.php';
-require_once 'modules/add.php';
+require_once 'modules/update.php';
 
 if (isset($_GET['v']) && isset($_GET['q'])) {
     $id = $_GET['q'];
@@ -17,8 +17,19 @@ if (isset($_GET['v']) && isset($_GET['q'])) {
     $weights = $weights->fetchAll(PDO::FETCH_ASSOC);
     include 'template/weight.php';
 }
-if (isset($_POST[''])) {
+if (isset($_POST['updatedWeight'])) {
+    $idWeight = $_GET['q'];
+    $weight = $_POST['weight'];
+    $unit = $_POST['unit'];
+
+    //convert kg to ton
+    if ($unit = 'kg') {
+        $weight = $weight / 1000;
+    }
+
+    updateWeight($weight, $conn, $idWeight);
 }
+
 ?>
 
 <?php require_once 'template/footer.php'; ?>

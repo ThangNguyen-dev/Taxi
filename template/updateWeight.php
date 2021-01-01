@@ -5,7 +5,7 @@
         <!-- input distance -->
         <div class="mb-3">
             <label for="form-select" class="form-label">Cân Nặng (Tấn)</label>
-            <input type="texts" class="form-control" value="<?= $weights['weight'] ?>" name="distance" id="distance" aria-describedby="distance">
+            <input type="texts" class="form-control" value="<?= $weights['weight'] ?>" name="weight" id="weight" aria-describedby="weight">
         </div>
 
         <!-- input kg or 1000kg -->
@@ -23,6 +23,6 @@
                 Tấn(1000kg)
             </label>
         </div>
-        <button type="submit" class="btn btn-primary mt-2" name="submit">Submit</button>
+        <button type="submit" class="btn btn-primary mt-2" name="updatedWeight">Cập nhật</button>
     </form>
 </div>

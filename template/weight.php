@@ -37,10 +37,10 @@
                             <td scope="col-4" value="<?= $weight['weight'] ?>"><?= $weight['weight'] ?></td>
                             <td scope="col-3">
                                 <!-- Button trigger modal -->
-                                <a type="button" class="btn btn-striped" href="weight.php?v=0&q=<?= $weight['id_weight'] ?>&t=dis">
+                                <a type="button" class="btn btn-striped" href="weight.php?v=0&q=<?= $weight['id_weight'] ?>&t=wei">
                                     <img src="img/edit.svg" alt="Edit" />
                                 </a>
-                                <a type="button" class="btn btn-striped" href="weight.php?v=1&q=<?= $weight['id_weight'] ?>&t=dis">
+                                <a type="button" class="btn btn-striped" href="weight.php?v=1&q=<?= $weight['id_weight'] ?>&t=wei">
                                     <img src="img/trash-2.svg" alt="">
                                 </a>
 
