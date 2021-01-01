@@ -11,3 +11,10 @@ function updateWeight(int $weight, PDO $conn, int $idWeight)
     $insert->execute(['weight' => $weight, 'id_weight' => $idWeight]);
     header("Location: weight.php");
 }
+
+function updateCost(int $idWeight, int $idDistance, PDO $conn, int $fee)
+{
+    $insert = $conn->prepare('UPDATE `cost` SET `fee`=' . $fee . ' WHERE id_weight = ' . $idWeight . ' AND id_distance = ' . $idDistance);
+    $insert->execute();
+    header("Location: cost.php");
+}

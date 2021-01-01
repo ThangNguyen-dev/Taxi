@@ -18,4 +18,4 @@ function insertCost(int $idWeight, int $idDistance, PDO $conn, $fee)
     $insert = $conn->prepare('INSERT INTO `cost`(`id_distance`, `id_weight`, `fee`) VALUES (:idDistance,:idWeight,:fee)');
     $insert->execute(['id_distance' => $idDistance, 'id_weight' => $idWeight, 'fee' => $fee]);
     header("Location: weight.php");
-}
+} 

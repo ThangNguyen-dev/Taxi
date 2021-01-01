@@ -4,19 +4,35 @@ require_once 'modules/delete.php';
 require_once 'modules/getData.php';
 require_once 'modules/update.php';
 
+/**
+ * get v to get type delete or uppate
+ * get q to get id need update or delete
+ */
+
 if (isset($_GET['v']) && isset($_GET['q'])) {
-    $id = $_GET['q'];
+    $idWeight = $_GET['q'];
     if ($_GET['v'] == 1) {
-        deleteWeight($id, $conn);
+
+        deleteWeight($idWeight, $conn);
     } elseif ($_GET['v'] == 0) {
-        $weights = getWeight($id, $conn);
+
+        //get weight from idWeight to show update page
+        $weights = getWeight($idWeight, $conn);
         require_once 'template/updateWeight.php';
     }
 } else {
+
+    // Show all data weight from database
     $weights = $conn->query("SELECT * FROM `weight` WHERE 1");
     $weights = $weights->fetchAll(PDO::FETCH_ASSOC);
+
+    //include weight to show weight
     include 'template/weight.php';
 }
+
+/**
+ * get data from form to update weight
+ */
 if (isset($_POST['updatedWeight'])) {
     $idWeight = $_GET['q'];
     $weight = $_POST['weight'];

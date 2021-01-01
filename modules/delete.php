@@ -18,7 +18,7 @@ function deleteWeight(int $idWeight, PDO $conn)
 }
 
 /**
- * get Distance from database to show
+ * delete Distance from database
  * @ $idDistance is interger
  * @ $conn is PDO object, database connection
  * @ return array weight from $idDistance
@@ -31,5 +31,20 @@ function deleteDistance(int $idDistance, PDO $conn)
         header("Location: distance.php");
     } else {
         return 'That Bai';
+    }
+}
+
+/**
+ * delete Distance from database
+ * @ $idDistance is interger
+ * @ $idWeight is interger
+ * @ $conn is PDO object, database connection
+ * @ return array weight from $idDistance
+ */
+function deleteCost(int $idDistance, int $idWeight, PDO $conn)
+{
+    if (isset($idWeight) && isset($idDistance) && isset($conn)) {
+        $result = $conn->query('DELETE FROM `cost` WHERE id_distance =' . $idDistance . '  AND id_weight =' . $idWeight);
+        header("Location: cost.php");
     }
 }

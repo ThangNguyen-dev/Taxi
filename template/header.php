@@ -28,16 +28,20 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.php">Tinh Chi Phi Taxi</a>
+                            <a class="nav-link active fw-bold" aria-current="page" href="index.php">Tinh Chi Phi Taxi</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="distance.php">Giới Hạn Khoảng Cách</a>
+                            <a class="nav-link fw-bold" href="distance.php">Giới Hạn Khoảng Cách</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="weight.php">Giới Hạn Cân Nặng</a>
+                            <a class="nav-link fw-bold" href="weight.php">Giới Hạn Cân Nặng</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-bold" href="cost.php">Chi phí</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
+        <!-- end navbar  -->
     </div>
